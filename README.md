@@ -4,6 +4,8 @@ technical review file to interview prepartion
 
 
 ### installation and usage
+inatalled directory (syncronized directory) is C:\eesrc\technical interview in nodebook
+
 programmed from eclipse with pydev
 file name indroduction.py to basic python programming
 
