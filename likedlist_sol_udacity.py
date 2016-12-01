@@ -1,8 +1,33 @@
 '''
-Created on Nov 30, 2016
+ There isnt a built-in data structure in Python that looks like a linked list. 
+Thankfully, it's easy to make classes that represent data structures in Python! 
+ 
+Here's the code for an Element, which will be a single unit in a linked list:'''
+class Element1(object):
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+         
+'''This code is very similar—we're just establishing that a LinkedList is something 
+that has a head Element, which is the first element in the list. If we establish 
+a new LinkedList without a head, it will default to None. '''
+         
+class LinkedList1(object):
+    def __init__(self, head=None):
+        self.head = head
+         
+'''Great! Let's add a method to our LinkedList to make it a little more useful. 
+This method will add a new Element to the end of our LinkedList.'''
+        
+    def append(self, new_element):
+        current = self.head
+        if self.head:
+            while current.next:
+                current = current.next
+            current.next = new_element
+        else:
+            self.head = new_element
 
-@author: Gloria
-'''
 """The LinkedList code from before is provided below.
 Add three functions to the LinkedList.
 "get_position" returns the element at a certain position.
@@ -17,45 +42,51 @@ class Element(object):
     def __init__(self, value):
         self.value = value
         self.next = None
-
+#LinkedList is something that has a head Element, 
+#which is the first element in the list.  
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
 
     def append(self, new_element):
         current = self.head
-        if self.head:
-            while current.next:
-                current = current.next
-            current.next = new_element
+        if self.head:  #if head is exist(not None)
+            while current.next:   #and if current's next element exist
+                current = current.next     #shift to next 
+            current.next = new_element   #current's next element become new_element.   
         else:
             self.head = new_element
-
+# Get an element from a particular position.
+# Assume the first position is 1.
+# Return "None" if position is not in the list.
     def get_position(self, position):
         counter = 1
         current = self.head
-        if position < 1:
+        if position < 1:   # useless positon since first point should be 1
             return None
-        while current and counter <= position:
-            if counter == position:
+        while current and counter <= position:  #while current exit(not None) & counter is within position 
+            if counter == position:  
                 return current
             current = current.next
             counter += 1
         return None
-
+# """Insert a new node at the given position.
+#         Assume the first position is 1.
+#         Inserting at position 3 means between
+#         the 2nd and 3rd elements."""
     def insert(self, new_element, position):
         counter = 1
         current = self.head
         if position > 1:
             while current and counter < position:
                 if counter == position - 1:
-                    new_element.next = current.next
-                    current.next = new_element
+                    new_element.next = current.next  #current's next linked to new_element's next since element is between current and current's next
+                    current.next = new_element #current's next linked to new_element
                 current = current.next
                 counter += 1
         elif position == 1:
-            new_element.next = self.head
-            self.head = new_element
+            new_element.next = self.head  #new_element position before self.head, so new_element's next linked to slfe.head
+            self.head = new_element #self.head is substituted by new_element.
 
     def delete(self, value):
         current = self.head
