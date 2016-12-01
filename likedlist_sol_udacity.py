@@ -89,14 +89,14 @@ class LinkedList(object):
             self.head = new_element #self.head is substituted by new_element.
 
     def delete(self, value):
-        current = self.head
-        previous = None
-        while current.value != value and current.next:
-            previous = current
-            current = current.next
-        if current.value == value:
-            if previous:
-                previous.next = current.next
+        current = self.head  #start with head
+        previous = None      #and previous element not exit
+        while current.value != value and current.next:  # while current's value is different from "value" and current's next exit
+            previous = current  #previous element become current element
+            current = current.next  #current shift to right
+        if current.value == value:  #if current value is equal "value" 
+            if previous:            #and previous exist
+                previous.next = current.next    #skip current and move link to the next element and it become previous's next, so delete current.
             else:
                 self.head = current.next
 
